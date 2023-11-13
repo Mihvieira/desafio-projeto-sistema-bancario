@@ -2,6 +2,8 @@
 from abc import ABC, abstractclassmethod, abstractproperty
 from datetime import datetime
 import textwrap
+import random
+import math
 
 class Cliente:
     def __init__(self, endereço):
@@ -30,7 +32,8 @@ class Conta:
         self._histórico = Historico()
         
     @classmethod
-    def nova_conta(cls, cliente, número):
+    def nova_conta(cls, cliente):
+        número = math.ceil(100000*random.random())
         return cls(número, cliente)
     
     @property
@@ -153,13 +156,13 @@ class Depósito(Transação):
 def menu():
     menu = """\n
     ================ MENU ================
-    [d]\tDepositar
-    [s]\tSacar
-    [e]\tExtrato
-    [nc]\tNova conta
-    [lc]\tListar contas
-    [nu]\tNovo usuário
-    [q]\tSair
+    [0]\tDepositar
+    [1]\tSacar
+    [2]\tExtrato
+    [3]\tNova conta
+    [4]\tListar contas
+    [5]\tNovo usuário
+    [6]\tSair
     => """
     return input(textwrap.dedent(menu))
 
@@ -248,12 +251,20 @@ def criar_cliente(clientes):
         return
 
     nome = input('Informe o nome completo: ')
-    data_nascimento = input('Informe a data de nascimento (dd-mm-aaaa): ')
     endereço = input('Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): ')
+    data_nascimento = datetime.strptime(input('Digite a sua data de nascimento (formato dd/mm/AAAA): '), "%d/%m/%Y")
+    idade = (datetime.now() - data_nascimento).days//365
+    if nome.isalpha() == True and idade >= 18:
+                                         
+        cliente = PessoaFísica(nome=nome, data_nascimento=data_nascimento, cpf=cpf, endereço=endereço)
 
-    cliente = PessoaFísica(nome=nome, data_nascimento=data_nascimento, cpf=cpf, endereço=endereço)
-
-    clientes.append(cliente)
+        clientes.append(cliente)
+    elif idade<18:
+        print('Você não possui a idade necessária. Não é possível abrir a conta.')
+        return
+    else:
+        print('Tente novamente')
+        return
 
     print('Cliente criado com sucesso!')
 
@@ -285,26 +296,26 @@ def main():
     while True:
         opcao = menu()
 
-        if opcao == 'd':
+        if opcao == '0':
             depositar(clientes)
 
-        elif opcao == 's':
+        elif opcao == '1':
             sacar(clientes)
 
-        elif opcao == 'e':
+        elif opcao == '2':
             exibir_extrato(clientes)
 
-        elif opcao == 'nu':
+        elif opcao == '3':
             criar_cliente(clientes)
 
-        elif opcao == 'nc':
+        elif opcao == '4':
             numero_conta = len(contas) + 1
             criar_conta(numero_conta, clientes, contas)
 
-        elif opcao == 'lc':
+        elif opcao == '5':
             listar_contas(contas)
 
-        elif opcao == 'q':
+        elif opcao == '6':
             break
 
         else:
