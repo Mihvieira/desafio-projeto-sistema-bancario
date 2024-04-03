@@ -22,5 +22,5 @@ O projeto foi desenvolvido durante o curso Python Developer da DIO. Inicialmente
 
 Obs. Instale o Python, caso não possua.
 
-## Créditos
+## Agradecimentos
 - [Instrutores do Curso Python Developer - DIO](https://www.dio.me/curso-intensivo-python)
