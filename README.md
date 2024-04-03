@@ -4,7 +4,7 @@ Bem-vindo(a) ao projeto Backend de um sistema bancário! Este projeto tem como o
 
 ### Aprendizado
 
-O projeto foi desenvolvido durante o curso Python Developer da DIO. Inicialmente foram utiizadas apenas funções em Python e depois o projeto evoluiu com o uso de programação orientada a objetos.
+O projeto foi desenvolvido durante o curso [Python Developer da DIO](https://www.dio.me/curso-intensivo-python). Inicialmente foram utiizadas apenas funções em Python e depois o projeto evoluiu com o uso de programação orientada a objetos.
 
 ### Características-Features
 
@@ -21,6 +21,3 @@ O projeto foi desenvolvido durante o curso Python Developer da DIO. Inicialmente
 4. Execute o arquivo Python.
 
 Obs. Instale o Python, caso não possua.
-
-## Agradecimentos
-- [Instrutores do Curso Python Developer - DIO](https://www.dio.me/curso-intensivo-python)
